@@ -9,7 +9,7 @@ USER root
 RUN apt-get -m update && apt-get install -y python curl 
 
 # Install latest version of pip
-curl  https://bootstrap.pypa.io/get-pip.py | sudo python
+RUN curl  https://bootstrap.pypa.io/get-pip.py | sudo python
 
 # Install Python modules
 RUN pip install pysam
