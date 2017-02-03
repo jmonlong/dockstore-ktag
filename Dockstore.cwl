@@ -26,8 +26,8 @@ hints:
 inputs:
   bam_input:
     type: File
-    doc: "The BAM file used as input, it must be indexed."
-    format: "http://edamontology.org/format_2572" 
+    doc: "The BAM file used as input."
+    Format: "http://edamontology.org/format_2572" 
     inputBinding:
       prefix: -b
 

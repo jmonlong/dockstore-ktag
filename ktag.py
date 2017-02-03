@@ -20,25 +20,25 @@ for km in open(args.klist, "r"):
 
 # Open BAM file
 bam = pysam.AlignmentFile(args.bam, "rb")
-if(not bam.has_index()):
-    print 'Input BAM must be indexed.'
-    quit()
-totalReads = bam.mapped + bam.unmapped
 
 # Init output file
 outf = open(args.output, "w")
 outf.write('#' + str(kmer_list) + '\n')
-outf.write('#' + str(totalReads) + '\n')
 
 # Tag all reads
+totalReads = 0
 reads = bam.fetch(until_eof=True)
 for read in reads:
+    totalReads += 1
     tag = 0
     for ii, km in enumerate(kmer_list):
         if(km in read.seq):
             tag += 2 << ii
     if(tag > 0):
         outf.write(str(tag) + '\n')
+
+# Record the total number of reads
+outf.write('#' + str(totalReads) + '\n')
 
 # Close output file
 outf.close()
