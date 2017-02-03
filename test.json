@@ -1,0 +1,15 @@
+{
+    "bam_input": {
+        "class": "File",
+        "format": "http://edamontology.org/format_2572",
+        "path": "test-wgs.bam"
+    },
+    "klist_input": {
+        "class": "File",
+        "path": "test-klist.txt"
+    },
+    "ktag_output": {
+        "class": "File",
+        "path": "ktag-output.txt"
+    }
+}
