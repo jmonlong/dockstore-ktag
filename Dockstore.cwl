@@ -31,7 +31,7 @@ inputs:
     inputBinding:
       prefix: -b
 
-  kilst_input:
+  klist_input:
     type: File
     doc: "A file with the list of khmer to consider."
     inputBinding:
@@ -41,7 +41,7 @@ outputs:
   ktag_output:
     type: File
     outputBinding:
-      prefix: -o
+      glob: ktag_output.txt
     doc: "A file with the tag for each read (with at least one khmer present)."
 
-baseCommand: ["bash", "/usr/local/bin/ktag.py"]
+baseCommand: ["python", "/usr/local/bin/ktag.py"]

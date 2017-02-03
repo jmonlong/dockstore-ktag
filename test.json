@@ -10,6 +10,6 @@
     },
     "ktag_output": {
         "class": "File",
-        "path": "ktag-output.txt"
+        "path": "test-ktag-output.txt"
     }
 }

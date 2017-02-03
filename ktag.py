@@ -8,7 +8,8 @@ parser = argparse.ArgumentParser(description='Tags reads according to ' +
 parser.add_argument('-b', dest='bam', help='the BAM file', required=True)
 parser.add_argument('-k', dest='klist', required=True,
                     help='the file with the list of khmer to use')
-parser.add_argument('-o', dest='output', help='the output file', required=True)
+parser.add_argument('-o', dest='output', default='ktag_output.txt',
+                    help='the output file')
 
 args = parser.parse_args()
 
@@ -16,10 +17,6 @@ args = parser.parse_args()
 kmer_list = []
 for km in open(args.klist, "r"):
     kmer_list.append(km.strip())
-
-# FOR DEBUG
-# args.bam = "../../data/LP6005058-DNA_B01.subsampled0001.bam"
-# kmer_list = ["ATTAT", "AATAA", "ATATA"]
 
 # Open BAM file
 bam = pysam.AlignmentFile(args.bam, "rb")
