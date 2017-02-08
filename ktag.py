@@ -12,6 +12,8 @@ parser.add_argument('-k', dest='klist', required=True,
                     help='the file with the list of khmer to use')
 parser.add_argument('-rf', dest='rff', required=True,
                     help='the trained RF classifier')
+parser.add_argument('-p', dest='probmin', default=.9, type=float,
+                    help='the trained RF classifier')
 parser.add_argument('-o', dest='output', default='ktag_output.txt',
                     help='the output file')
 
@@ -48,7 +50,10 @@ for read in reads:
             x.append(True)
         else:
             x.append(False)
-    pred[rfc.predict([x])[0]] += 1
+    predprobs = rfc.predict_proba([x])[0]
+    for ii, prob in enumerate(predprobs):
+        if(prob > args.probmin):
+            pred[rfc.classes_[ii]] += 1
 
 # Write counts
 for c in rfc.classes_:
