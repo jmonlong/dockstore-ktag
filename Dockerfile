@@ -12,7 +12,7 @@ RUN apt-get -m update && apt-get install -y python curl
 RUN curl  https://bootstrap.pypa.io/get-pip.py | sudo python
 
 # Install Python modules
-RUN pip install pysam sklearn
+RUN pip install pysam sklearn numpy scipy
 
 # Copy the python script to /usr/local/bin
 COPY ktag.py /usr/local/bin/

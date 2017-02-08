@@ -6,9 +6,9 @@ from sklearn.externals import joblib
 
 parser = argparse.ArgumentParser(description='Train a RF classifer using ' +
                                  'the presence/absence of specific khmers.')
-parser.add_argument('-i', dest='tfile', help='the file with training data',
-                    required=True)
-parser.add_argument('-k', dest='klist', required=True,
+parser.add_argument('-i', dest='train_data', required=True,
+                    help='the file with training data')
+parser.add_argument('-k', dest='khmer_list', required=True,
                     help='the file with the list of khmer to use')
 parser.add_argument('-t', dest='ntrees', default=10, type=int,
                     help='the file with the list of khmer to use')
@@ -19,11 +19,11 @@ args = parser.parse_args()
 
 # Read khmer list
 kmer_list = []
-for km in open(args.klist, "r"):
+for km in open(args.khmer_list, "r"):
     kmer_list.append(km.strip())
 
 # Read training data
-inf = open(args.tfile, "r")
+inf = open(args.train_data, "r")
 X = []
 Y = []
 headers = inf.next()
