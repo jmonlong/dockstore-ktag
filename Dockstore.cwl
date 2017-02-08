@@ -37,11 +37,24 @@ inputs:
     inputBinding:
       prefix: -k
 
+  rf_input:
+    type: File
+    doc: "The trained Random Forest classifier."
+    inputBinding:
+      prefix: -rf
+
+  chunk_size:
+    type: int
+    default: 10000
+    doc: "The number of reads to analyze in a chunk."
+    inputBinding:
+      prefix: -s
+
 outputs:
   ktag_output:
     type: File
     outputBinding:
-      glob: ktag_output.txt
+      glob: ktag_output.tsv
     doc: "A file with the tag for each read (with at least one khmer present)."
 
 baseCommand: ["python", "/usr/local/bin/ktag.py"]

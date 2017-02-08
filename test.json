@@ -8,8 +8,12 @@
         "class": "File",
         "path": "test-klist.txt"
     },
+    "rf_input": {
+        "class": "File",
+        "path": "test-classifier.pkl"
+    },
     "ktag_output": {
         "class": "File",
-        "path": "test-ktag-output.txt"
+        "path": "test-ktag-output.tsv"
     }
 }

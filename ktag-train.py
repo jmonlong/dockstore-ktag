@@ -1,12 +1,13 @@
 #!/usr/bin/env python
 
 import argparse
-import pickle
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.externals import joblib
 
 parser = argparse.ArgumentParser(description='Train a RF classifer using ' +
                                  'the presence/absence of specific khmers.')
-parser.add_argument('-i', dest='tfile', help='the file with training data', required=True)
+parser.add_argument('-i', dest='tfile', help='the file with training data',
+                    required=True)
 parser.add_argument('-k', dest='klist', required=True,
                     help='the file with the list of khmer to use')
 parser.add_argument('-t', dest='ntrees', default=10, type=int,
@@ -45,4 +46,4 @@ rfc = rfc.fit(X, Y)
 print 'OOB score:' + str(rfc.oob_score_)
 
 # Save classifier
-pickle.dump(rfc, open(args.output, "wb"))
+joblib.dump(rfc, args.output, compress=9)
