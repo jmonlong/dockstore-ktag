@@ -31,6 +31,13 @@ inputs:
     inputBinding:
       prefix: -b
 
+  icgc_input:
+    type: string
+    doc: "The ICGC id to use as input."
+    Format: "http://edamontology.org/format_2572" 
+    inputBinding:
+      prefix: -icgc
+
   klist_input:
     type: File
     doc: "A file with the list of khmer to consider."
@@ -47,6 +54,13 @@ inputs:
     type: int
     default: 10000
     doc: "The number of reads to analyze in a chunk."
+    inputBinding:
+      prefix: -c
+
+  downsamp_prop:
+    type: float
+    default: .5
+    doc: "The proportion of reads to down-sample."
     inputBinding:
       prefix: -s
 
