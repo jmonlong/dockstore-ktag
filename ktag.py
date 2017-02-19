@@ -6,12 +6,10 @@ from sklearn.externals import joblib
 from sklearn.ensemble import RandomForestClassifier
 import numpy
 import random
-import subprocess
 
 parser = argparse.ArgumentParser(description='Tags reads according to ' +
                                  'the presence/absence of specific khmers.')
-parser.add_argument('-b', dest='bam', default='', help='the BAM file')
-parser.add_argument('-icgc', dest='icgc', default='', help='the ICGC file id')
+parser.add_argument('-b', dest='bam', required=True, help='the BAM file')
 parser.add_argument('-k', dest='khmer_list', required=True,
                     help='the file with the list of khmer to use')
 parser.add_argument('-rf', dest='rf_class', required=True,
@@ -35,17 +33,7 @@ rfc = RandomForestClassifier()
 rfc = joblib.load(args.rf_class)
 
 # Open BAM file
-if(args.bam == '' and args.icgc == ''):
-    print "At least on of '-b' or '-icgc' is needed."
-if(args.icgc == ''):
-    bam = pysam.AlignmentFile(args.bam, "rb")
-else:
-    cmd = ['icgc-storage-client', 'download', '--object-id', args.icgc,
-           '--output-dir', '.', '--output-layout', 'id']
-    dump = open('/dev/null')
-    cmd_out = subprocess.check_output(cmd, stderr=dump)
-    dump.close()
-    bam = pysam.AlignmentFile(args.icgc, "rb")
+bam = pysam.AlignmentFile(args.bam, "rb")
 
 # Init output file
 outf = open(args.output, "w")
