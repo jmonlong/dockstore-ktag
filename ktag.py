@@ -18,7 +18,7 @@ parser.add_argument('-rf', dest='rf_class', required=True,
                     help='the trained RF classifier')
 parser.add_argument('-c', dest='chunk_size', default=10000, type=int,
                     help='number of reads analyzed in a chunk')
-parser.add_argument('-s', dest='supsamp', default=.5, type=float,
+parser.add_argument('-s', dest='subsamp', default=.5, type=float,
                     help='proportion of reads to downsample.')
 parser.add_argument('-o', dest='output', default='ktag_output.tsv',
                     help='the output file')
