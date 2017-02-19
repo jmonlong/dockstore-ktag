@@ -10,8 +10,8 @@ import subprocess
 
 parser = argparse.ArgumentParser(description='Tags reads according to ' +
                                  'the presence/absence of specific khmers.')
-parser.add_argument('-b', dest='bam', help='the BAM file')
-parser.add_argument('-icgc', dest='icgc', help='the ICGC file id')
+parser.add_argument('-b', dest='bam', default='', help='the BAM file')
+parser.add_argument('-icgc', dest='icgc', default='', help='the ICGC file id')
 parser.add_argument('-k', dest='khmer_list', required=True,
                     help='the file with the list of khmer to use')
 parser.add_argument('-rf', dest='rf_class', required=True,
@@ -35,9 +35,9 @@ rfc = RandomForestClassifier()
 rfc = joblib.load(args.rf_class)
 
 # Open BAM file
-if("bam" not in args and "icgc" not in args):
+if(args.bam == '' and args.icgc == ''):
     print "At least on of '-b' or '-icgc' is needed."
-if("bam" in args):
+if(args.icgc == ''):
     bam = pysam.AlignmentFile(args.bam, "rb")
 else:
     cmd = ['icgc-storage-client', 'download', '--object-id', args.icgc,

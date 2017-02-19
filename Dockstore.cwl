@@ -26,6 +26,7 @@ hints:
 inputs:
   bam_input:
     type: File
+    default: ""
     doc: "The BAM file used as input."
     Format: "http://edamontology.org/format_2572" 
     inputBinding:
@@ -33,6 +34,7 @@ inputs:
 
   icgc_input:
     type: string
+    default: ""
     doc: "The ICGC id to use as input."
     Format: "http://edamontology.org/format_2572" 
     inputBinding:
